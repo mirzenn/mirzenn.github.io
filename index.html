@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #ffb6c1; /* Pastelowy róż */
+                text-align: center;
+                font-family: 'Arial', sans-serif;
+            }
+            h1 {
+                color: #d10050; /* Głęboka czerwień */
+            }
+            button {
+                font-size: 18px;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: 0.3s;
+                margin: 5px;
+            }
+            #yesButton {
+                background-color: #ff0000; /* Czerwony */
+                color: white;
+            }
+            #yesButton:hover {
+                background-color: #cc0000;
+            }
+            #no {
+                position: absolute;
+                background-color: #ff69b4; /* Różowy */
+                color: white;
+            }
+            #no:hover {
+                background-color: #ff1493;
+            }
+            #message {
+                font-size: 20px;
+                font-weight: bold;
+                color: #d10050;
+                margin-top: 20px;
+                display: none;
+            }
+            .extra-buttons {
+                margin-top: 20px;
+            }
+            .extra-buttons button {
+                background-color: #d10050; /* Głęboka czerwień */
+                color: white;
+            }
+            .extra-buttons button:hover {
+                background-color: #a0003d;
+            }
+            #image-container {
+                margin-top: 20px;
+            }
+            img {
+                width: 300px;
+                height: auto;
+                border-radius: 15px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h1>Zostaniesz moją Walentynką? 💖</h1>
+            <button id="yesButton">Tak</button>
+            <button id="no">Nie</button>
+            <p id="message">Kocham Cię Skarbie!!! 💕 Teraz możesz otworzyć prezenty! 🎁💘</p>
+
+            <div class="extra-buttons">
+                <a href="dlaczego-kocham.html"><button>Dlaczego cię kocham?</button></a>
+                <a href="dlaczego-wybralem.html"><button>Dlaczego wybrałem ciebie?</button></a>
+                <a href="dlaczego-zazdrosny.html"><button>Dlaczego jestem o ciebie zazdrosny?</button></a>
+            </div>
+
+            <div id="image-container">
+                <img id="changingImage" src="heart.gif" alt="Wybierz odpowiedź">
+            </div>
+        </div>
+
+        <script>
+            document.getElementById("yesButton").addEventListener("click", function() {
+                document.getElementById("message").style.display = "block";
+            });
+
+            var no = document.getElementById("no");
+            no.addEventListener("mouseover", moveButton);
+
+            function moveButton() {
+                var i = Math.floor(Math.random() * window.innerWidth * 0.8) + 1;
+                var j = Math.floor(Math.random() * window.innerHeight * 0.8) + 1;
+                no.style.left = i + "px";
+                no.style.top = j + "px";
+            }
+
+            // Lista obrazków smutnych kotków
+            const sadCats = [
+                "sad_cat1.jpg", "sad_cat2.jpg", "sad_cat3.jpg", "sad_cat4.jpg", "sad_cat5.jpg",
+                "sad_cat6.jpg", "sad_cat7.jpg", "sad_cat8.jpg", "sad_cat9.jpg", "sad_cat10.jpg"
+            ];
+            const happyCatGif = "happy_cat.gif"; // GIF szczęśliwego kotka
+
+            document.getElementById("yesButton").addEventListener("mouseover", function() {
+                document.getElementById("changingImage").src = happyCatGif;
+            });
+
+            document.getElementById("no").addEventListener("mouseover", function() {
+                let randomCat = sadCats[Math.floor(Math.random() * sadCats.length)];
+                document.getElementById("changingImage").src = randomCat;
+            });
+        </script>
+    </body>
+</html>

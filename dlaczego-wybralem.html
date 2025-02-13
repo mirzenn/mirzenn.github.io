@@ -1,0 +1,88 @@
+<html>
+    <head>
+        <style>
+            body {
+                background-color: #ffb6c1;
+                text-align: center;
+                font-family: Arial, sans-serif;
+            }
+            .grid {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+                justify-content: center;
+                max-width: 900px;
+                margin: auto;
+                margin-top: 30px;
+            }
+            .card-container {
+                perspective: 1000px;
+            }
+            .card {
+                width: 200px;
+                height: 150px;
+                position: relative;
+                transform-style: preserve-3d;
+                transition: transform 0.6s;
+                cursor: pointer;
+            }
+            .card:hover {
+                transform: rotateY(180deg);
+            }
+            .card .front, .card .back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                backface-visibility: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 15px;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+                font-size: 16px;
+                font-weight: bold;
+                padding: 10px;
+                text-align: center;
+            }
+            .card .front {
+                background-color: #ff4d6d;
+                color: white;
+            }
+            .card .back {
+                background-color: white;
+                color: #d10050;
+                transform: rotateY(180deg);
+            }
+            button {
+                margin-top: 20px;
+                padding: 10px 20px;
+                font-size: 18px;
+                background-color: #d10050;
+                color: white;
+                border: none;
+                border-radius: 10px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #a0003d;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Dlaczego cię wybrałem? ❤️</h1>
+        <p>To tylko mała część <3</p>
+        <div class="grid">
+            <div class="card-container"><div class="card"><div class="front">1</div><div class="back">Bo jesteś wyjątkowa 😊</div></div></div>
+            <div class="card-container"><div class="card"><div class="front">2</div><div class="back">Bo jesteś lojalna! 💕</div></div></div>
+            <div class="card-container"><div class="card"><div class="front">3</div><div class="back">Bo jesteś piękna! ✨</div></div></div>
+            <div class="card-container"><div class="card"><div class="front">4</div><div class="back">Bo zakochałem się w tobie od pierwszego wejrzenia! ❤️</div></div></div>
+            <div class="card-container"><div class="card"><div class="front">5</div><div class="back">Bo przy tobie czuję się szczęśliwy! 😍</div></div></div>
+            <div class="card-container"><div class="card"><div class="front">6</div><div class="back">Bo się dla mnie przełamujesz do różnych rzeczy! ✨</div></div></div>
+            <div class="card-container"><div class="card"><div class="front">7</div><div class="back">Bo troszczysz się o mnie! 💪</div></div></div>
+            <div class="card-container"><div class="card"><div class="front">8</div><div class="back">Bo zawsze mogę na ciebie liczyć! 💘</div></div></div>
+            <div class="card-container"><div class="card"><div class="front">9</div><div class="back">Bo mnie nie oceniasz! 💖</div></div></div>
+        </div>
+        <br>
+        <a href="index.html"><button>Wróć</button></a>
+    </body>
+</html>
