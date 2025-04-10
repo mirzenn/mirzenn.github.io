@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Timer Miłości 💗</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #ffe4ec;
+      color: #fff;
+      scroll-behavior: smooth;
+      position: relative;
+    }
+
+    section {
+      padding: 100px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-content {
+      max-width: 700px;
+      margin: auto;
+      background: rgba(255,255,255,0.15);
+      border-radius: 25px;
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.2);
+      backdrop-filter: blur(5px);
+      transition: all 1s ease;
+      opacity: 0;
+      transform: translateY(50px);
+    }
+
+    .section-content.visible {
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+
+    .section-title {
+      font-size: 36px;
+      margin-bottom: 20px;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .count {
+      font-size: 56px;
+      font-weight: bold;
+      margin: 20px 0;
+      color: #fff;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .quote {
+      font-style: italic;
+      font-size: 18px;
+      margin-top: 20px;
+      color: #fff;
+      animation: fadeInUp 1.5s ease-in;
+    }
+
+    .heart-divider {
+      font-size: 32px;
+      margin: 50px 0 20px;
+      color: #f78da7;
+    }
+
+    .romantic-divider {
+      width: 80px;
+      height: 4px;
+      background: #fff;
+      margin: 30px auto;
+      border-radius: 20px;
+      opacity: 0.5;
+    }
+
+    .heart-icon {
+      font-size: 48px;
+      color: #ff6f91;
+      animation: pulseHeart 2s infinite;
+      display: inline-block;
+      margin-bottom: 20px;
+    }
+
+    .background-heart {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,192,203,0.2) 0%, transparent 80%);
+      z-index: -1;
+      animation: moveBackground 20s linear infinite;
+    }
+
+    .floating-hearts {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: -2;
+      animation: floatHearts 15s linear infinite;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 24px;
+      color: #ff6f91;
+      animation: floatHeart 10s ease-in infinite;
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulseHeart {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    @keyframes moveBackground {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    @keyframes floatHearts {
+      0% { background-position: 0 0; }
+      100% { background-position: 1000px 1000px; }
+    }
+
+    @keyframes floatHeart {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url('https://i.ibb.co/6NQpWwH/hearts.png') repeat;
+      opacity: 0.05;
+      z-index: -1;
+      animation: floatHearts 60s linear infinite;
+      pointer-events: none;
+    }
+
+    .section-miesiace { background: linear-gradient(to bottom, #ff9a9e, #fad0c4); }
+    .section-dni      { background: linear-gradient(to bottom, #fbc2eb, #a6c1ee); }
+    .section-godziny  { background: linear-gradient(to bottom, #a18cd1, #fbc2eb); }
+    .section-minuty   { background: linear-gradient(to bottom, #ffecd2, #fcb69f); }
+    .section-sekundy  { background: linear-gradient(to bottom, #ffdde1, #ee9ca7); }
+    .section-lata     { background: linear-gradient(to bottom, #f78da7, #fbc2eb); }
+
+    footer {
+      background: #f78da7;
+      padding: 80px 20px;
+      text-align: center;
+      color: #fff;
+      font-size: 24px;
+      font-style: italic;
+    }
+
+    .section-header {
+      text-align: center;
+      font-size: 48px;
+      font-weight: bold;
+      margin: 50px 0;
+      color: #ff6f91;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Sekcja przywitania -->
+  <section class="section-header">
+    <div>💖 Jesteśmy razem od 03.03.2024 💖</div>
+    <div>Jak ty ze mną wytrzymujesz? 😘</div>
+  </section>
+
+  <!-- Sekcja z latami na początku -->
+  <section class="section-lata">
+    <div class="background-heart"></div>
+    <div class="section-content" id="sekcja-lata">
+      <div class="heart-icon">💖</div>
+      <div class="section-title">Lata, który razem spędziliśmy...</div>
+      <div class="count" id="ileLata">...</div>
+      <div class="quote">„Lata z Tobą to wieczność w moim sercu.”</div>
+      <div class="romantic-divider"></div>
+    </div>
+  </section>
+
+  <!-- Sekcja miesięcy -->
+  <section class="section-miesiace">
+    <div class="background-heart"></div>
+    <div class="section-content" id="sekcja-miesiace">
+      <div class="heart-icon">❤️</div>
+      <div class="section-title">Ile to miesięcy?</div>
+      <div class="count" id="ileMiesiecy">...</div>
+      <div class="quote">„Każdy miesiąc z Tobą jest jak rozdział najpiękniejszej bajki.” 📖💘</div>
+      <div class="romantic-divider"></div>
+    </div>
+  </section>
+
+  <!-- Sekcja dni -->
+  <section class="section-dni">
+    <div class="background-heart"></div>
+    <div class="section-content" id="sekcja-dni">
+      <div class="heart-icon">💖</div>
+      <div class="section-title">Ile to dni?</div>
+      <div class="count" id="ileDni">...</div>
+      <div class="quote">„Każdy dzień z Tobą to prezent od losu.” 🎁</div>
+      <div class="romantic-divider"></div>
+    </div>
+  </section>
+
+  <!-- Sekcja godzin -->
+  <section class="section-godziny">
+    <div class="background-heart"></div>
+    <div class="section-content" id="sekcja-godziny">
+      <div class="heart-icon">⏰</div>
+      <div class="section-title">Ile to godziny?</div>
+      <div class="count" id="ileGodzin">...</div>
+      <div class="quote">„Nie liczę godzin i lat, bo z Tobą czas płynie inaczej...” 🕰️</div>
+      <div class="romantic-divider"></div>
+    </div>
+  </section>
+
+  <!-- Sekcja minut -->
+  <section class="section-minuty">
+    <div class="background-heart"></div>
+    <div class="section-content" id="sekcja-minuty">
+      <div class="heart-icon">🕊️</div>
+      <div class="section-title">Ile to minut?</div>
+      <div class="count" id="ileMinut">...</div>
+      <div class="quote">„Minuty z Tobą to najcenniejsze chwile w moim sercu.”</div>
+      <div class="romantic-divider"></div>
+    </div>
+  </section>
+
+  <!-- Sekcja sekund -->
+  <section class="section-sekundy">
+    <div class="background-heart"></div>
+    <div class="section-content" id="sekcja-sekundy">
+      <div class="heart-icon">💓</div>
+      <div class="section-title">Ile to sekund?</div>
+      <div class="count" id="ileSekund">...</div>
+      <div class="quote">„Każda sekunda z Tobą jest pełna miłości.”</div>
+      <div class="romantic-divider"></div>
+    </div>
+  </section>
+
+  <footer>
+    Bo kocham Cię... za każdą sekundę, każdą chwilę i każdy uśmiech. 💝  
+    <br><br>
+    I spędziłbym cały ten czas jeszcze raz, od nowa... dla Ciebie.
+  </footer>
+
+  <script>
+    function updateLoveTime() {
+      const teraz = new Date();
+      const start = new Date(2024, 2, 3, 0, 0, 0); // 03.03.2024
+      const roznica = teraz - start;
+
+      const sekundy = Math.floor(roznica / 1000);
+      const minuty = Math.floor(sekundy / 60);
+      const godziny = Math.floor(minuty / 60);
+      const dni = Math.floor(godziny / 24);
+      const miesiace = Math.floor(dni / 30);
+      const lata = Math.floor(dni / 365);
+
+      document.getElementById('ileLata').textContent = `${lata} lat`;
+      document.getElementById('ileMiesiecy').textContent = `${miesiace} miesięcy`;
+      document.getElementById('ileDni').textContent = `${dni} dni`;
+      document.getElementById('ileGodzin').textContent = `${godziny} godzin`;
+      document.getElementById('ileMinut').textContent = `${minuty} minut`;
+      document.getElementById('ileSekund').textContent = `${sekundy} sekund`;
+
+      setTimeout(updateLoveTime, 1000);
+    }
+
+    function revealOnScroll() {
+      const elements = document.querySelectorAll('.section-content');
+      for (let el of elements) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('visible');
+        }
+      }
+    }
+
+    window.addEventListener('load', () => {
+      updateLoveTime();
+      revealOnScroll();
+    });
+
+    window.addEventListener('scroll', revealOnScroll);
+  </script>
+
+</body>
+</html>
